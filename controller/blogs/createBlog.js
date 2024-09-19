@@ -1,0 +1,1 @@
+exports.createBlog = (require, response) => {};

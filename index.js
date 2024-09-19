@@ -1,28 +1,16 @@
-import { createServer } from "http";
-import express from "express";
-import bodyParser from "body-parser";
+const express = require("express");
+const UserRouter = require("./router/user");
+const BlogRouter = require("./router/blog");
 
 const app = express();
 
-const port = 8000;
-
-// const server = createServer((request, response) => {
-//   response.statusCode = 200;
-//   response.setHeader("Content-Type", "text/plain");
-//   response.end("Hello hello 2 ");
-//   console.log(response);
-// });
 app.use(express.json());
 
-app.get("/articles", (request, response) => {
-  response.send("Hello from express");
-});
+const port = 8080;
 
-app.post("/addArticle", (request, response) => {
-  const { title } = request.body;
-  response.send(`Product succesfully created ${title}`);
-});
+app.use(UserRouter);
+app.use(BlogRouter);
 
 app.listen(port, () => {
-  console.log(`server is running at http://localhost:${port}`);
+  console.log(`server running at a http://localhost:${port}/`);
 });
